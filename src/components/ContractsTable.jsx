@@ -5,8 +5,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import AddIcon from '@mui/icons-material/Add';
 import LayersIcon from '@mui/icons-material/Layers';
 import GetAppIcon from '@mui/icons-material/GetApp';
-import rowsData from './contracts.json'; 
-import clients from './clients.json';
+import rowsData from '../data/contracts.json'; 
+import clients from '../data/clients.json';
 
 const columns = [
   { field: 'id', headerName: '#', width: 70 },

@@ -40,11 +40,11 @@ export default function ContractsTable() {
   });
 
   return (
-    <Box sx={{ backgroundColor: 'white', minHeight: '100vh', pt: 0 }}>
-      <Box sx={{ backgroundColor: 'white', pb: 2, display: 'flex', alignItems: 'center', px: 2 }}>
-        <Typography variant="h4">Contracts</Typography>
-        <Typography variant="subtitle1" color="textSecondary" sx={{ ml: 2 }}>Home • Contracts</Typography>
-      </Box>
+    <Box sx={{ backgroundColor: 'white', minHeight: '100vh', pt: 2, pl: 6 }}>
+      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <Typography variant="h5" fontWeight="bold" sx={{ textTransform: 'none' }}>Contracts</Typography>
+          <Typography variant="subtitle1" color="textSecondary" sx={{ ml: 2, textTransform: 'none' }}>Home • Contracts</Typography>
+        </Box>
       <Box sx={{ backgroundColor: 'white', px: 2, borderBottom: '1px solid #ccc', pb: 1 }}>
         <Button variant="text" sx={{ borderRight: '1px solid #ccc', borderRadius: 0, color: 'gray', '&:hover': { backgroundColor: 'transparent' }, '&:focus': { backgroundColor: 'transparent' } }}>
           Duration Start Date To End Date
@@ -56,7 +56,17 @@ export default function ContractsTable() {
             size="small"
             value={clientFilter}
             onChange={handleClientChange}
-            sx={{ ml: 1, width: 'auto', minWidth: 50, '& .MuiOutlinedInput-root': { border: 'none' } }}
+            sx={{
+                ml: 1,
+                width: 'auto',
+                minWidth: 50,
+                '& .MuiOutlinedInput-root': {
+                  border: 'none',
+                  '& fieldset': {
+                    border: 'none',
+                  },
+                },
+              }}
           >
             {clients.map((client) => (
               <MenuItem key={client.value} value={client.value}>
@@ -67,7 +77,7 @@ export default function ContractsTable() {
         </Button>
         <Button variant="text" sx={{ borderRight: '1px solid #ccc', borderRadius: 0, color: 'gray', '&:hover': { backgroundColor: 'transparent' }, '&:focus': { backgroundColor: 'transparent' } }}>
           Contract Type
-          <TextField select size="small" defaultValue="All" sx={{ ml: 1, width: 'auto', minWidth: 50, '& .MuiOutlinedInput-root': { border: 'none' } }}>
+          <TextField select size="small" defaultValue="All" sx={{ ml: 1, width: 'auto', minWidth: 50, '& .MuiOutlinedInput-root': { border: 'none','& fieldset': {border: 'none',}, } }}>
             <MenuItem value="All" sx={{ fontWeight: 'bold', color: 'black', border: 'none' }}>All</MenuItem>
           </TextField>
         </Button>

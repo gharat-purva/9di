@@ -135,7 +135,7 @@ export default function ContractsTable() {
           <AddIcon sx={{ mr: 1 }} />
           Create Contract
         </Button>
-        <Button variant="outlined" sx={{  backgroundColor: 'white', textTransform: 'none', mr: 1, color: 'gray'}}>
+        <Button variant="outlined" sx={{  backgroundColor: 'white', textTransform: 'none', mr: 1, color: 'gray', border: '1px solid gray' }}>
           <LayersIcon sx={{ mr: 1 }} />
           Contract Template
         </Button>

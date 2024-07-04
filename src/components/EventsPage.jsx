@@ -118,7 +118,7 @@ const EventsPage = () => {
               placeholder="Start typing to search"
               sx={{
                 '& .MuiOutlinedInput-root': {
-                  height: '40px', // Ensure the height matches the button
+                  height: '40px', 
                   borderTopLeftRadius: 0,
                   borderBottomLeftRadius: 0,
                   borderLeft: 'none'

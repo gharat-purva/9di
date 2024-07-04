@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 const NavBar = () => {
   return (
-    <AppBar position="static" sx={{ backgroundColor: '#333' }}>
+    <AppBar position="static" sx={{ backgroundColor: '#172029' }}>
       <Toolbar>
         <Typography variant="h6" sx={{ flexGrow: 1 }}>
           DI 9 temporary nav bar

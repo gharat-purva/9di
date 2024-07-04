@@ -132,7 +132,7 @@ const EventsPage = () => {
         <AddIcon sx={{ mr: 1 }} />
         Add Event
       </Button>
-      <Box sx={{ backgroundColor: 'white', height: 740, p: 2, ml: 4, width: 1900 }}>
+      <Box sx={{ backgroundColor: 'white', height: 640, p: 2, ml: 4, width: 1600 }}>
         <Calendar
           localizer={localizer}
           events={events}

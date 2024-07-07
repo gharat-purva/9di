@@ -21,6 +21,9 @@ const NavBar = () => {
           <Button color="inherit" component={Link} to="/add-lead">
             Add Lead
           </Button>
+          <Button color="inherit" component={Link} to="/tasks">
+            Tasks
+          </Button>
         </Box>
       </Toolbar>
     </AppBar>

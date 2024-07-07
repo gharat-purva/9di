@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {
-  Box, Button, Typography, TextField, MenuItem, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Tooltip,
-  Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper
+  Box, Button, Typography, TextField, MenuItem, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Tooltip
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import SearchIcon from '@mui/icons-material/Search';
@@ -18,10 +17,11 @@ import MenuIcon from '@mui/icons-material/Menu';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import PushPinIcon from '@mui/icons-material/PushPin';
+import { DataGrid } from '@mui/x-data-grid'; // Import DataGrid from MUI X
 
 const TasksPage = () => {
   const [tasks, setTasks] = useState([]);
-  const [duration, setDuration] = useState({ start: '2024-06-06', end: '2024-07-05' });
+  const [duration, setDuration] = useState({ start: '', end: '' });
   const [statusFilter, setStatusFilter] = useState('Hide Completed Task');
   const [open, setOpen] = useState(false);
   const [newTask, setNewTask] = useState({ title: '', startDate: '', endDate: '', status: '' });
@@ -42,6 +42,33 @@ const TasksPage = () => {
   const handleDelete = (index) => {
     setTasks(tasks.filter((_, i) => i !== index));
   };
+
+  const columns = [
+    { field: 'code', headerName: 'Code', width: 90 },
+    { field: 'timer', headerName: 'Timer', width: 130 },
+    { field: 'dueDate', headerName: 'Due Date', width: 130 },
+    { field: 'title', headerName: 'Task', width: 150 },
+    { field: 'completedOn', headerName: 'Completed On', width: 150 },
+    { field: 'startDate', headerName: 'Start Date', width: 130 },
+    { field: 'hoursLogged', headerName: 'Hours Logged', width: 150 },
+    { field: 'assignedTo', headerName: 'Assigned To', width: 150 },
+    { field: 'status', headerName: 'Status', width: 120 },
+    {
+      field: 'action',
+      headerName: 'Action',
+      width: 120,
+      renderCell: (params) => (
+        <Button onClick={() => handleDelete(params.rowIndex)} variant="outlined">Delete</Button>
+      ),
+    },
+  ];
+
+  // Sample data for demonstration
+  const rows = [
+    { id: 1, code: 1, timer: '00:30:00', dueDate: '2024-07-20', title: 'Task 1', completedOn: '', startDate: '2024-07-01', hoursLogged: '5h 30m', assignedTo: 'Purva Gharat', status: 'Pending' },
+    { id: 2, code: 2, timer: '01:15:00', dueDate: '2024-07-25', title: 'Task 2', completedOn: '', startDate: '2024-07-05', hoursLogged: '8h 45m', assignedTo: 'Purva Gharat', status: 'Completed' },
+    // Add more rows as needed
+  ];
 
   return (
     <Box sx={{ backgroundColor: '#f3f4f8', minHeight: '100vh', mr: 0, overflowX: 'hidden' }}>
@@ -122,8 +149,8 @@ const TasksPage = () => {
           <GetAppIcon sx={{ mr: 1 }} />
           Export
         </Button>
-        <Box sx={{ ml: 'auto', display: 'flex', alignItems: 'center' }}>
-          <IconButton sx={{ border: '1px solid #616e7f', backgroundColor: '#616e7f', color: 'white', borderTopLeftRadius: '4px', borderBottomLeftRadius: '4px', height: '40px', width: '40px', '&:hover': { backgroundColor: '#000000', color: 'white' } }}>
+        <Box sx={{ ml: 'auto', display: 'flex', alignItems: 'center', mr: 4 }}>
+          <IconButton sx={{ border: '1px solid #616e7f', backgroundColor: '#616e7f', color: 'white', borderRadius: 0, borderTopLeftRadius: '4px', borderBottomLeftRadius: '4px', height: '40px', width: '40px', '&:hover': { backgroundColor: '#000000', color: 'white' } }}>
             <MenuIcon />
           </IconButton>
           <IconButton sx={{ border: '1px solid #616e7f', backgroundColor: 'white', color: '#616e7f', borderRadius: 0, height: '40px', width: '40px', '&:hover': { backgroundColor: '#000000', color: 'white' } }}>
@@ -132,48 +159,21 @@ const TasksPage = () => {
           <IconButton sx={{ border: '1px solid #616e7f', backgroundColor: 'white', color: '#616e7f', borderRadius: 0, height: '40px', width: '40px', '&:hover': { backgroundColor: '#000000', color: 'white' } }}>
             <CalendarTodayIcon />
           </IconButton>
-          <IconButton sx={{ border: '1px solid #616e7f', backgroundColor: 'white', color: '#616e7f', borderTopRightRadius: '4px', borderBottomRightRadius: '4px', height: '40px', width: '40px', '&:hover': { backgroundColor: '#000000', color: 'white' } }}>
+          <IconButton sx={{ border: '1px solid #616e7f', backgroundColor: 'white', color: '#616e7f', borderRadius: 0, borderTopRightRadius: '4px', borderBottomRightRadius: '4px', height: '40px', width: '40px', '&:hover': { backgroundColor: '#000000', color: 'white' } }}>
             <PushPinIcon />
           </IconButton>
         </Box>
       </Box>
-      <Box sx={{ backgroundColor: 'white', p: 2, ml: 4, width: '90%', overflowX: 'auto' }}>
-        <TableContainer component={Paper}>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>Code</TableCell>
-                <TableCell>Timer</TableCell>
-                <TableCell>Task</TableCell>
-                <TableCell>Completed On</TableCell>
-                <TableCell>Start Date</TableCell>
-                <TableCell>Due Date</TableCell>
-                <TableCell>Hours Logged</TableCell>
-                <TableCell>Assigned To</TableCell>
-                <TableCell>Status</TableCell>
-                <TableCell>Action</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {tasks.map((task, index) => (
-                <TableRow key={index}>
-                  <TableCell>{task.code}</TableCell>
-                  <TableCell>{task.timer}</TableCell>
-                  <TableCell>{task.title}</TableCell>
-                  <TableCell>{task.completedOn}</TableCell>
-                  <TableCell>{task.startDate}</TableCell>
-                  <TableCell>{task.endDate}</TableCell>
-                  <TableCell>{task.hoursLogged}</TableCell>
-                  <TableCell>{task.assignedTo}</TableCell>
-                  <TableCell>{task.status}</TableCell>
-                  <TableCell>
-                    <Button onClick={() => handleDelete(index)}>Delete</Button>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+      
+        <Box sx={{ height: 400, mr: 4, ml: 4, backgroundColor: 'white' }}>
+          <DataGrid
+            rows={rows}
+            columns={columns}
+            pageSize={5}
+            rowsPerPageOptions={[5]}
+            checkboxSelection
+          />
+        
       </Box>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle sx={{ textTransform: 'none' }}>Add New Task</DialogTitle>

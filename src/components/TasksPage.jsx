@@ -17,7 +17,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import PushPinIcon from '@mui/icons-material/PushPin';
-import { DataGrid } from '@mui/x-data-grid'; // Import DataGrid from MUI X
+import { DataGrid } from '@mui/x-data-grid'; 
 
 const TasksPage = () => {
   const [tasks, setTasks] = useState([]);
@@ -63,11 +63,11 @@ const TasksPage = () => {
     },
   ];
 
-  // Sample data for demonstration
+  // Sample data 
   const rows = [
     { id: 1, code: 1, timer: '00:30:00', dueDate: '2024-07-20', title: 'Task 1', completedOn: '', startDate: '2024-07-01', hoursLogged: '5h 30m', assignedTo: 'Purva Gharat', status: 'Pending' },
     { id: 2, code: 2, timer: '01:15:00', dueDate: '2024-07-25', title: 'Task 2', completedOn: '', startDate: '2024-07-05', hoursLogged: '8h 45m', assignedTo: 'Purva Gharat', status: 'Completed' },
-    // Add more rows as needed
+
   ];
 
   return (
@@ -86,7 +86,7 @@ const TasksPage = () => {
           <Tooltip title="Power Settings"><IconButton><PowerSettingsNewIcon /></IconButton></Tooltip>
         </Box>
       </Box>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: 'white', px: 2, mb: 2 }}>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: 'white', pl: 2, mb: 2 }}>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Typography variant="subtitle1" sx={{ color: '#a2a2a2', textTransform: 'none' }}>Duration</Typography>
           <TextField
@@ -94,17 +94,17 @@ const TasksPage = () => {
             size="small"
             value={duration.start}
             onChange={(e) => setDuration({ ...duration, start: e.target.value })}
-            sx={{ width: 'auto', minWidth: 100, '& .MuiOutlinedInput-root': { border: 'none', '& fieldset': { border: 'none' }, } }}
+            sx={{ width: 'auto', minWidth: 5, '& .MuiOutlinedInput-root': { border: 'none', '& fieldset': { border: 'none' }, } }}
           />
-          <Typography variant="subtitle1" sx={{ textTransform: 'none', mx: 1 }}>To</Typography>
+          <Typography variant="subtitle1" sx={{ textTransform: 'none', mx: 0 }}>To</Typography>
           <TextField
             type="date"
             size="small"
             value={duration.end}
             onChange={(e) => setDuration({ ...duration, end: e.target.value })}
-            sx={{ width: 'auto', minWidth: 100, '& .MuiOutlinedInput-root': { border: 'none', '& fieldset': { border: 'none' }, }, pr: 4, borderRight: 1, borderRightColor: '#f3f4f8' }}
+            sx={{ width: 'auto', minWidth: 100, '& .MuiOutlinedInput-root': { border: 'none', '& fieldset': { border: 'none' }, },  borderRight: 1, borderRightColor: '#f3f4f8' }}
           />
-          <Typography variant="subtitle1" sx={{ color: '#a2a2a2', textTransform: 'none', mx: 2 }}>Status</Typography>
+          <Typography variant="subtitle1" sx={{ color: '#a2a2a2', textTransform: 'none', mx: 1 }}>Status</Typography>
           <TextField
             select
             size="small"
@@ -116,7 +116,7 @@ const TasksPage = () => {
             <MenuItem value="Show All Tasks">Show All Tasks</MenuItem>
           </TextField>
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <IconButton sx={{ backgroundColor: '#f3f4f8', border: 'solid 1px', borderColor: '#c4c4c4', borderRadius: 0, p: 1, height: '40px', width: '45px', ml: '30px' }}>
+            <IconButton sx={{  my: 1,backgroundColor: '#f3f4f8', border: 'solid 1px', borderColor: '#c4c4c4', borderRadius: 0, p: 1, height: '40px', width: '45px' }}>
               <SearchIcon />
             </IconButton>
             <TextField
@@ -127,7 +127,7 @@ const TasksPage = () => {
             />
           </Box>
           <Button variant="outlined" sx={{ ml: 1, textTransform: 'none', borderColor: '#616e7f', color: '#616e7f' }}>
-            <ClearIcon sx={{ mr: 1 }} />
+            <ClearIcon sx={{ mr: 0 }} />
             Clear
           </Button>
         </Box>
@@ -141,11 +141,11 @@ const TasksPage = () => {
           <AddIcon sx={{ mr: 1 }} />
           Add Task
         </Button>
-        <Button variant="outlined" sx={{ textTransform: 'none', borderColor: '#616e7f', color: '#616e7f', mr: 2 }}>
+        <Button variant="outlined" sx={{ backgroundColor: '#fff', textTransform: 'none', borderColor: '#616e7f', color: '#616e7f', mr: 2 }}>
           <AccountCircleIcon sx={{ mr: 1 }} />
           My Tasks
         </Button>
-        <Button variant="outlined" sx={{ textTransform: 'none', borderColor: '#616e7f', color: '#616e7f', mr: 2 }}>
+        <Button variant="outlined" sx={{ backgroundColor: '#fff',textTransform: 'none', borderColor: '#616e7f', color: '#616e7f', mr: 2 }}>
           <GetAppIcon sx={{ mr: 1 }} />
           Export
         </Button>

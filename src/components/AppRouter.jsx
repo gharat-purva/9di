@@ -8,6 +8,8 @@ import EventsPage from './EventsPage';
 import ContractsTable from './ContractsTable';
 import AddLeadContactInfo from './AddLeadContactInfo';
 import TasksPage from './TasksPage'; 
+import AddTaskPage from './AddTaskPage'; // Import the new page
+
 const theme = createTheme();
 
 const AppRouter = () => {
@@ -21,6 +23,7 @@ const AppRouter = () => {
           <Route path="/contracts" element={<ContractsTable />} />
           <Route path="/add-lead" element={<AddLeadContactInfo />} />
           <Route path="/tasks" element={<TasksPage />} />
+          <Route path="/add-task" element={<AddTaskPage />} /> {/* New Route */}
         </Routes>
       </Router>
     </ThemeProvider>

@@ -17,30 +17,30 @@ import MenuIcon from '@mui/icons-material/Menu';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import PushPinIcon from '@mui/icons-material/PushPin';
-import { DataGrid } from '@mui/x-data-grid'; 
+import { DataGrid } from '@mui/x-data-grid';
+import { useNavigate } from 'react-router-dom';
 
 const TasksPage = () => {
   const [tasks, setTasks] = useState([]);
   const [duration, setDuration] = useState({ start: '', end: '' });
   const [statusFilter, setStatusFilter] = useState('Hide Completed Task');
   const [open, setOpen] = useState(false);
-  const [newTask, setNewTask] = useState({ title: '', startDate: '', endDate: '', status: '' });
+  const [newTask, setNewTask] = useState({ title: '', startDate: '', endDate: '', status: 'Pending' });
+  const navigate = useNavigate();
 
-  const handleClickOpen = () => {
-    setOpen(true);
+  const handleAddTaskClick = () => {
+    navigate('/add-task'); // Navigate to the new page
   };
+
+  
 
   const handleClose = () => {
     setOpen(false);
   };
 
   const handleAddTask = () => {
-    setTasks([...tasks, { ...newTask, code: tasks.length + 1 }]);
+    // Logic to add new task
     handleClose();
-  };
-
-  const handleDelete = (index) => {
-    setTasks(tasks.filter((_, i) => i !== index));
   };
 
   const columns = [
@@ -63,11 +63,10 @@ const TasksPage = () => {
     },
   ];
 
-  // Sample data 
+  // Sample data
   const rows = [
     { id: 1, code: 1, timer: '00:30:00', dueDate: '2024-07-20', title: 'Task 1', completedOn: '', startDate: '2024-07-01', hoursLogged: '5h 30m', assignedTo: 'Purva Gharat', status: 'Pending' },
     { id: 2, code: 2, timer: '01:15:00', dueDate: '2024-07-25', title: 'Task 2', completedOn: '', startDate: '2024-07-05', hoursLogged: '8h 45m', assignedTo: 'Purva Gharat', status: 'Completed' },
-
   ];
 
   return (
@@ -102,7 +101,7 @@ const TasksPage = () => {
             size="small"
             value={duration.end}
             onChange={(e) => setDuration({ ...duration, end: e.target.value })}
-            sx={{ width: 'auto', minWidth: 100, '& .MuiOutlinedInput-root': { border: 'none', '& fieldset': { border: 'none' }, },  borderRight: 1, borderRightColor: '#f3f4f8' }}
+            sx={{ width: 'auto', minWidth: 100, '& .MuiOutlinedInput-root': { border: 'none', '& fieldset': { border: 'none' }, }, borderRight: 1, borderRightColor: '#f3f4f8' }}
           />
           <Typography variant="subtitle1" sx={{ color: '#a2a2a2', textTransform: 'none', mx: 1 }}>Status</Typography>
           <TextField
@@ -116,7 +115,7 @@ const TasksPage = () => {
             <MenuItem value="Show All Tasks">Show All Tasks</MenuItem>
           </TextField>
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <IconButton sx={{  my: 1,backgroundColor: '#f3f4f8', border: 'solid 1px', borderColor: '#c4c4c4', borderRadius: 0, p: 1, height: '40px', width: '45px' }}>
+            <IconButton sx={{ my: 1, backgroundColor: '#f3f4f8', border: 'solid 1px', borderColor: '#c4c4c4', borderRadius: 0, p: 1, height: '40px', width: '45px' }}>
               <SearchIcon />
             </IconButton>
             <TextField
@@ -137,8 +136,9 @@ const TasksPage = () => {
         </Typography>
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'center', ml: 4, mb: 2 }}>
-        <Button variant="contained" sx={{ backgroundColor: '#ff9000', color: 'white', textTransform: 'none', mr: 2 }} onClick={handleClickOpen}>
-          <AddIcon sx={{ mr: 1 }} />
+        
+        <Button sx={{ backgroundColor: '#ff9000', textTransform: 'none', color: 'white', mr: 2  }} onClick={handleAddTaskClick}>
+          <AddIcon />
           Add Task
         </Button>
         <Button variant="outlined" sx={{ backgroundColor: '#fff', textTransform: 'none', borderColor: '#616e7f', color: '#616e7f', mr: 2 }}>
@@ -149,80 +149,57 @@ const TasksPage = () => {
           <GetAppIcon sx={{ mr: 1 }} />
           Export
         </Button>
-        <Box sx={{ ml: 'auto', display: 'flex', alignItems: 'center', mr: 4 }}>
-          <IconButton sx={{ border: '1px solid #616e7f', backgroundColor: '#616e7f', color: 'white', borderRadius: 0, borderTopLeftRadius: '4px', borderBottomLeftRadius: '4px', height: '40px', width: '40px', '&:hover': { backgroundColor: '#000000', color: 'white' } }}>
-            <MenuIcon />
-          </IconButton>
-          <IconButton sx={{ border: '1px solid #616e7f', backgroundColor: 'white', color: '#616e7f', borderRadius: 0, height: '40px', width: '40px', '&:hover': { backgroundColor: '#000000', color: 'white' } }}>
-            <BarChartIcon />
-          </IconButton>
-          <IconButton sx={{ border: '1px solid #616e7f', backgroundColor: 'white', color: '#616e7f', borderRadius: 0, height: '40px', width: '40px', '&:hover': { backgroundColor: '#000000', color: 'white' } }}>
-            <CalendarTodayIcon />
-          </IconButton>
-          <IconButton sx={{ border: '1px solid #616e7f', backgroundColor: 'white', color: '#616e7f', borderRadius: 0, borderTopRightRadius: '4px', borderBottomRightRadius: '4px', height: '40px', width: '40px', '&:hover': { backgroundColor: '#000000', color: 'white' } }}>
-            <PushPinIcon />
-          </IconButton>
-        </Box>
       </Box>
-      
-        <Box sx={{ height: 400, mr: 4, ml: 4, backgroundColor: 'white' }}>
-          <DataGrid
-            rows={rows}
-            columns={columns}
-            pageSize={5}
-            rowsPerPageOptions={[5]}
-            checkboxSelection
-          />
-        
+      <Box sx={{ height: 400, width: '95%', ml: 4}}>
+        <DataGrid rows={rows} columns={columns} pageSize={5} rowsPerPageOptions={[5]} checkboxSelection disableSelectionOnClick />
       </Box>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle sx={{ textTransform: 'none' }}>Add New Task</DialogTitle>
+        <DialogTitle>Add New Task</DialogTitle>
         <DialogContent>
           <TextField
             autoFocus
             margin="dense"
             label="Task Title"
+            type="text"
             fullWidth
             value={newTask.title}
             onChange={(e) => setNewTask({ ...newTask, title: e.target.value })}
-            sx={{ textTransform: 'none' }}
           />
           <TextField
             margin="dense"
             label="Start Date"
             type="date"
             fullWidth
-            InputLabelProps={{ shrink: true }}
             value={newTask.startDate}
             onChange={(e) => setNewTask({ ...newTask, startDate: e.target.value })}
-            sx={{ textTransform: 'none' }}
           />
           <TextField
             margin="dense"
             label="End Date"
             type="date"
             fullWidth
-            InputLabelProps={{ shrink: true }}
             value={newTask.endDate}
             onChange={(e) => setNewTask({ ...newTask, endDate: e.target.value })}
-            sx={{ textTransform: 'none' }}
           />
           <TextField
-            margin="dense"
-            label="Status"
             select
+            label="Status"
             fullWidth
             value={newTask.status}
             onChange={(e) => setNewTask({ ...newTask, status: e.target.value })}
-            sx={{ textTransform: 'none' }}
           >
             <MenuItem value="Pending">Pending</MenuItem>
+            <MenuItem value="In Progress">In Progress</MenuItem>
             <MenuItem value="Completed">Completed</MenuItem>
           </TextField>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} sx={{ textTransform: 'none' }}>Cancel</Button>
-          <Button onClick={handleAddTask} sx={{ textTransform: 'none' }}>Add</Button>
+          <Button onClick={handleClose} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={handleAddTask} color="primary">
+            Add Task
+          </Button>
         </DialogActions>
       </Dialog>
     </Box>

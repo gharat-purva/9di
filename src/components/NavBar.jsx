@@ -1,32 +1,42 @@
 // src/components/NavBar.jsx
 
 import React from 'react';
-import { AppBar, Toolbar, Typography, Button, Box } from '@mui/material';
+import { Box, List, ListItem, ListItemText } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 const NavBar = () => {
   return (
-    <AppBar position="static" sx={{ backgroundColor: '#172029' }}>
-      <Toolbar>
-        <Typography variant="h6" sx={{ flexGrow: 1 }}>
-          DI 9 temporary nav bar
-        </Typography>
-        <Box sx={{ display: 'flex', gap: 2 }}>
-          <Button color="inherit" component={Link} to="/events">
-            Events
-          </Button>
-          <Button color="inherit" component={Link} to="/contracts">
-            Contracts
-          </Button>
-          <Button color="inherit" component={Link} to="/add-lead">
-            Add Lead
-          </Button>
-          <Button color="inherit" component={Link} to="/tasks">
-            Tasks
-          </Button>
-        </Box>
-      </Toolbar>
-    </AppBar>
+    <Box
+      sx={{
+        width: 250,
+        height: '100vh',
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        backgroundColor: '#172029',
+        display: 'flex',
+        flexDirection: 'column',
+        padding: 2,
+      }}
+    >
+      <List sx={{ flexGrow: 1 }}>
+        <ListItem button component={Link} to="/events">
+          <ListItemText primary="Events" sx={{ color: 'white' }} />
+        </ListItem>
+        <ListItem button component={Link} to="/contracts">
+          <ListItemText primary="Contracts" sx={{ color: 'white' }} />
+        </ListItem>
+        <ListItem button component={Link} to="/add-lead">
+          <ListItemText primary="Add Lead" sx={{ color: 'white' }} />
+        </ListItem>
+        <ListItem button component={Link} to="/tasks">
+          <ListItemText primary="Tasks" sx={{ color: 'white' }} />
+        </ListItem>
+        <ListItem button component={Link} to="/products">
+          <ListItemText primary="Products" sx={{ color: 'white' }} />
+        </ListItem>
+      </List>
+    </Box>
   );
 };
 

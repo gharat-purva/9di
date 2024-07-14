@@ -45,7 +45,7 @@ export default function ContractsTable() {
   });
 
   return (
-    <Box sx={{ backgroundColor: '#f3f4f8', minHeight: '100vh' }}>
+    <Box sx={{ backgroundColor: '#f3f4f8', minHeight: '100vh', ml: '250px' }}>
       <Box sx={{ backgroundColor: 'white',  p: 2, display: 'flex', alignItems: 'center', justifyContent: 'space-between', px: 2, borderBottom: '1px solid #eef2f6' }}>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Typography variant="h5" fontWeight="bold" sx={{ textTransform: 'none' }}>Contracts</Typography>

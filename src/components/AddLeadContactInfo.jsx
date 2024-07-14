@@ -6,11 +6,10 @@ import {
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import SaveIcon from '@mui/icons-material/Save';
 import DoneAllIcon from '@mui/icons-material/DoneAll';
-import ClearIcon from '@mui/icons-material/Clear';
 
 export default function AddLeadContactInfo() {
   return (
-    <Box sx={{ p: 2, maxWidth: 1000, mx: 'auto', backgroundColor: '#f3f4f8' }}>
+    <Box sx={{ p: 2, maxWidth: 2900, mx: 'auto', backgroundColor: '#f3f4f8', ml: '250px' }}>
       <Typography variant="h5" gutterBottom fontWeight="bold">
         Add Lead Contact Info
       </Typography>
@@ -133,7 +132,6 @@ export default function AddLeadContactInfo() {
           <Button
             variant="text"
             sx={{ color: 'black' }}
-            startIcon={<ClearIcon />}
             aria-label="Cancel"
           >
             Cancel

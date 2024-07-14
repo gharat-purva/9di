@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  Box, Button, Typography, TextField, MenuItem, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Tooltip
+  Box, Button, Typography, TextField, MenuItem, IconButton, Tooltip
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import SearchIcon from '@mui/icons-material/Search';
@@ -13,36 +13,21 @@ import ClearIcon from '@mui/icons-material/Clear';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import GetAppIcon from '@mui/icons-material/GetApp';
 import FilterListIcon from '@mui/icons-material/FilterList';
-import MenuIcon from '@mui/icons-material/Menu';
-import BarChartIcon from '@mui/icons-material/BarChart';
-import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
-import PushPinIcon from '@mui/icons-material/PushPin';
 import { DataGrid } from '@mui/x-data-grid';
 import { useNavigate } from 'react-router-dom';
 
 const TasksPage = () => {
-  const [tasks, setTasks] = useState([]);
   const [duration, setDuration] = useState({ start: '', end: '' });
   const [statusFilter, setStatusFilter] = useState('Hide Completed Task');
-  const [open, setOpen] = useState(false);
-  const [newTask, setNewTask] = useState({ title: '', startDate: '', endDate: '', status: 'Pending' });
   const navigate = useNavigate();
 
   const handleAddTaskClick = () => {
-    navigate('/add-task'); // Navigate to the new page
+    navigate('/add-task'); 
   };
 
   
 
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleAddTask = () => {
-    // Logic to add new task
-    handleClose();
-  };
-
+ 
   const columns = [
     { field: 'code', headerName: 'Code', width: 90 },
     { field: 'timer', headerName: 'Timer', width: 130 },
@@ -70,7 +55,7 @@ const TasksPage = () => {
   ];
 
   return (
-    <Box sx={{ backgroundColor: '#f3f4f8', minHeight: '100vh', mr: 0, overflowX: 'hidden' }}>
+    <Box sx={{ backgroundColor: '#f3f4f8', minHeight: '100vh', mr: 0, overflowX: 'hidden', ml: '250px' }}>
       <Box sx={{ backgroundColor: 'white', pb: 2, p: 2, display: 'flex', alignItems: 'center', justifyContent: 'space-between', px: 2, borderBottom: '1px solid #eef2f6' }}>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Typography variant="h5" fontWeight="bold" sx={{ textTransform: 'none' }}>Tasks</Typography>
@@ -130,7 +115,7 @@ const TasksPage = () => {
             Clear
           </Button>
         </Box>
-        <Typography variant="subtitle1" sx={{ color: '#a2a2a2', textTransform: 'none', display: 'flex', alignItems: 'center', ml: 2, borderLeft: 1, borderLeftColor: '#f3f4f8', pl: 2 }}>
+        <Typography variant="subtitle1" sx={{ color: '#a2a2a2', textTransform: 'none', display: 'flex', alignItems: 'center', ml: 2, borderLeft: 1, borderLeftColor: '#f3f4f8', pl: 2 ,mr: 2}}>
           <FilterListIcon sx={{ mr: 1 }} />
           Filter
         </Typography>
@@ -150,58 +135,9 @@ const TasksPage = () => {
           Export
         </Button>
       </Box>
-      <Box sx={{ height: 400, width: '95%', ml: 4}}>
+      <Box sx={{ backgroundColor: 'white', height: 400, width: '95%', ml: 4}}>
         <DataGrid rows={rows} columns={columns} pageSize={5} rowsPerPageOptions={[5]} checkboxSelection disableSelectionOnClick />
       </Box>
-      <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Add New Task</DialogTitle>
-        <DialogContent>
-          <TextField
-            autoFocus
-            margin="dense"
-            label="Task Title"
-            type="text"
-            fullWidth
-            value={newTask.title}
-            onChange={(e) => setNewTask({ ...newTask, title: e.target.value })}
-          />
-          <TextField
-            margin="dense"
-            label="Start Date"
-            type="date"
-            fullWidth
-            value={newTask.startDate}
-            onChange={(e) => setNewTask({ ...newTask, startDate: e.target.value })}
-          />
-          <TextField
-            margin="dense"
-            label="End Date"
-            type="date"
-            fullWidth
-            value={newTask.endDate}
-            onChange={(e) => setNewTask({ ...newTask, endDate: e.target.value })}
-          />
-          <TextField
-            select
-            label="Status"
-            fullWidth
-            value={newTask.status}
-            onChange={(e) => setNewTask({ ...newTask, status: e.target.value })}
-          >
-            <MenuItem value="Pending">Pending</MenuItem>
-            <MenuItem value="In Progress">In Progress</MenuItem>
-            <MenuItem value="Completed">Completed</MenuItem>
-          </TextField>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={handleAddTask} color="primary">
-            Add Task
-          </Button>
-        </DialogActions>
-      </Dialog>
     </Box>
   );
 };

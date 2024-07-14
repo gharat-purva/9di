@@ -21,7 +21,7 @@ const TasksPage = () => {
   };
 
   const columns = [
-    { field: 'Id', headerName: 'Id', width: 90 },
+    { field: 'Id', headerName: 'Id', width: 80 },
     { field: 'productImage', headerName: 'Product Image', width: 200 },
     { field: 'products', headerName: 'Product', width: 130 },
     { field: 'price', headerName: 'Price (inclusive of all taxes)', width: 300 },

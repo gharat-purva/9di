@@ -9,7 +9,7 @@ const NavBar = () => {
     <Box
       sx={{
         width: 250,
-        height: '100vh',
+        height: '200vh',
         position: 'fixed',
         top: 0,
         left: 0,
@@ -34,6 +34,9 @@ const NavBar = () => {
         </ListItem>
         <ListItem button component={Link} to="/products">
           <ListItemText primary="Products" sx={{ color: 'white' }} />
+        </ListItem>
+        <ListItem button component={Link} to="/knowledge-base">
+          <ListItemText primary="Knowledge Base" sx={{ color: 'white' }} />
         </ListItem>
       </List>
     </Box>

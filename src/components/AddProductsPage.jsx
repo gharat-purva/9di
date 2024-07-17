@@ -23,7 +23,7 @@ export default function AddLeadContactInfo() {
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6} md={4}>
               <Typography variant="body2" color="gray" my={2} sx={{ fontSize: '16px' }}>Name <span style={{ color: '#984a55', fontSize: 'small' }}>*</span></Typography>
-              <TextField fullWidth placeholder="e.g. Web Hosting. Laptop. Notebook, Mobile App etc." required id="task" sx={{ 
+              <TextField fullWidth placeholder="e.g. Web Hosting, Laptop, Notebook, Mobile App etc." required id="task" sx={{ 
                       '& fieldset': { 
                         borderColor: '#efeff1',
                         height: '90%'

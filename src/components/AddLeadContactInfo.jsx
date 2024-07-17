@@ -13,7 +13,7 @@ export default function AddLeadContactInfo() {
       <Typography variant="h5" gutterBottom fontWeight="bold">
         Add Lead Contact Info
       </Typography>
-      <Box sx={{ p: 2, backgroundColor: 'white', borderRadius: 1, boxShadow: 1 }}>
+      <Box sx={{ p: 2, backgroundColor: 'white', borderRadius: 1 }}>
         <Box sx={{ mb: 3 }}>
           <Typography variant="h6" gutterBottom color="black">
             Lead Contact Detail

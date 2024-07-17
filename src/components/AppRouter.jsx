@@ -11,6 +11,7 @@ import TasksPage from './TasksPage';
 import AddTaskPage from './AddTaskPage'; 
 import ProductsPage from './ProductsPage';
 import AddProductsPage from './AddProductsPage';
+import KnowledgeBasePage from './KnowledgeBasePage';
 
 const theme = createTheme();
 
@@ -28,6 +29,7 @@ const AppRouter = () => {
           <Route path="/add-task" element={<AddTaskPage />} />
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/add-products" element={<AddProductsPage />} />
+          <Route path="/knowledge-base" element={<KnowledgeBasePage />} />
         </Routes>
       </Router>
     </ThemeProvider>

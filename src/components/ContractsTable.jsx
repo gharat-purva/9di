@@ -24,7 +24,7 @@ const columns = [
 ];
 
 export default function ContractsTable() {
-  const [rows, setRows] = React.useState(rowsData);
+  const [rows] = React.useState(rowsData);
   const [clientFilter, setClientFilter] = React.useState('All');
   const [searchTerm, setSearchTerm] = React.useState('');
 

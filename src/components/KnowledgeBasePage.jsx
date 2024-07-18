@@ -17,8 +17,8 @@ const KnowledgeBasePage = () => {
   const navigate = useNavigate();
   const [selectedItem, setSelectedItem] = useState(null);
 
-  const handleAddProductClick = () => {
-    navigate('/add-products'); 
+  const handleAddKnowledgeBaseClick = () => {
+    navigate('/add-knowledge-base'); 
   };
 
   const columns = [
@@ -112,7 +112,7 @@ const KnowledgeBasePage = () => {
           </Box>
           <Box sx={{ flexGrow: 1, p: 2 }}>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-              <Button sx={{ backgroundColor: '#ff9000', textTransform: 'none', color: 'white', mr: 2 }} onClick={handleAddProductClick}>
+              <Button sx={{ backgroundColor: '#ff9000', textTransform: 'none', color: 'white', mr: 2 }} onClick={handleAddKnowledgeBaseClick}>
                 <AddIcon />
                 Add New Article
               </Button>

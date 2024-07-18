@@ -25,6 +25,9 @@ export default function AddLeadContactInfo() {
       </Typography>
       <Box sx={{ p: 2, backgroundColor: 'white', borderRadius: 1 }}>
         <Box sx={{ mb: 3 }}>
+   <Typography variant="h6" gutterBottom color="black">
+            Article Details
+          </Typography>
           <RadioGroup
             aria-label="audience"
             name="audience"
@@ -36,9 +39,7 @@ export default function AddLeadContactInfo() {
             <FormControlLabel value="employees" control={<Radio />} label="For Employees" />
             <FormControlLabel value="clients" control={<Radio />} label="For Clients" />
           </RadioGroup>
-          <Typography variant="h6" gutterBottom color="black">
-            Article Details
-          </Typography>
+       
           <Box sx={{ borderBottom: '1px solid #f3f4f8', ml: 0, mb: 2 }}></Box>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>

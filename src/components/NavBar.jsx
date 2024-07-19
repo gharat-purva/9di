@@ -20,6 +20,9 @@ const NavBar = () => {
       }}
     >
       <List sx={{ flexGrow: 1 }}>
+        <ListItem button component={Link} to="/login">
+          <ListItemText primary="Login" sx={{ color: 'white' }} />
+        </ListItem>
         <ListItem button component={Link} to="/events">
           <ListItemText primary="Events" sx={{ color: 'white' }} />
         </ListItem>

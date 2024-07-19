@@ -14,7 +14,7 @@ import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import LinkIcon from '@mui/icons-material/Link';
 
 export default function AddLeadContactInfo() {
-  const [audience, setAudience] = React.useState('employees'); // State to manage radio button selection
+  const [audience, setAudience] = React.useState('employees'); 
 
   const today = new Date().toISOString().split('T')[0]; 
 

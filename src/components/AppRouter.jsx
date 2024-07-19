@@ -1,9 +1,8 @@
-// src/components/AppRouter.jsx
-
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
 import NavBar from './NavBar';
+import LoginPage from './LoginPage';
 import EventsPage from './EventsPage';
 import ContractsTable from './ContractsTable';
 import AddLeadContactInfo from './AddLeadContactInfo';
@@ -17,23 +16,25 @@ import AddKnowledgeBase from './AddKnowledgeBase';
 const theme = createTheme();
 
 const AppRouter = () => {
+  const location = useLocation();
+  const isLoginPage = location.pathname === '/login';
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Router>
-        <NavBar />
-        <Routes>
-          <Route path="/events" element={<EventsPage />} />
-          <Route path="/contracts" element={<ContractsTable />} />
-          <Route path="/add-lead" element={<AddLeadContactInfo />} />
-          <Route path="/tasks" element={<TasksPage />} />
-          <Route path="/add-task" element={<AddTaskPage />} />
-          <Route path="/products" element={<ProductsPage />} />
-          <Route path="/add-products" element={<AddProductsPage />} />
-          <Route path="/knowledge-base" element={<KnowledgeBasePage />} />
-          <Route path="/add-knowledge-base" element={<AddKnowledgeBase />} />
-        </Routes>
-      </Router>
+      {!isLoginPage && <NavBar />}
+      <Routes>
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/events" element={<EventsPage />} />
+        <Route path="/contracts" element={<ContractsTable />} />
+        <Route path="/add-lead" element={<AddLeadContactInfo />} />
+        <Route path="/tasks" element={<TasksPage />} />
+        <Route path="/add-task" element={<AddTaskPage />} />
+        <Route path="/products" element={<ProductsPage />} />
+        <Route path="/add-products" element={<AddProductsPage />} />
+        <Route path="/knowledge-base" element={<KnowledgeBasePage />} />
+        <Route path="/add-knowledge-base" element={<AddKnowledgeBase />} />
+      </Routes>
     </ThemeProvider>
   );
 };

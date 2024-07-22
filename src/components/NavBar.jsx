@@ -41,6 +41,9 @@ const NavBar = () => {
         <ListItem button component={Link} to="/knowledge-base">
           <ListItemText primary="Knowledge Base" sx={{ color: 'white' }} />
         </ListItem>
+        <ListItem button component={Link} to="/add-offer-letter">
+          <ListItemText primary="Offer Letter" sx={{ color: 'white' }} />
+        </ListItem>
       </List>
     </Box>
   );

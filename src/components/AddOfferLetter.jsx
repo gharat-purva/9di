@@ -20,7 +20,7 @@ export default function AddLeadContactInfo() {
   };
 
   return (
-    <Box sx={{ p: 2, maxWidth: 2900, mx: 'auto', backgroundColor: '#f3f4f8', ml: '250px' }}>
+    <Box sx={{ p: 2, maxWidth: 1200, mx: 'auto', backgroundColor: '#f3f4f8', ml: { md: '250px', xs: 'auto' } }}>
       <Typography variant="h5" gutterBottom fontWeight="bold">
         Add Offer Letter
       </Typography>

@@ -13,6 +13,7 @@ import AddProductsPage from './AddProductsPage';
 import KnowledgeBasePage from './KnowledgeBasePage';
 import AddKnowledgeBase from './AddKnowledgeBase';
 import AddOfferLetter from './AddOfferLetter';
+import InterviewSchedule from './InterviewSchedule';
 
 const theme = createTheme();
 
@@ -36,6 +37,7 @@ const AppRouter = () => {
         <Route path="/knowledge-base" element={<KnowledgeBasePage />} />
         <Route path="/add-knowledge-base" element={<AddKnowledgeBase />} />
         <Route path="/add-offer-letter" element={<AddOfferLetter />} />
+        <Route path="/interview-schedule" element={<InterviewSchedule />} />
       </Routes>
     </ThemeProvider>
   );

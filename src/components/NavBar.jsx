@@ -51,6 +51,9 @@ const NavBar = () => {
         <ListItem button component={Link} to="/add-offer-letter">
           <ListItemText primary="Offer Letter" sx={{ color: 'white' }} />
         </ListItem>
+        <ListItem button component={Link} to="/interview-schedule">
+          <ListItemText primary="Interview Schedule" sx={{ color: 'white' }} />
+        </ListItem>
       </List>
     </Box>
   );
@@ -111,6 +114,9 @@ const NavBar = () => {
             <ListItem button component={Link} to="/add-offer-letter">
               <ListItemText primary="Offer Letter" sx={{ color: 'white' }} />
             </ListItem>
+            <ListItem button component={Link} to="/interview-schedule">
+          <ListItemText primary="Interview Schedule" sx={{ color: 'white' }} />
+        </ListItem>
           </List>
         </Box>
       )}

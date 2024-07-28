@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
-import { Box, Button, Typography, TextField, MenuItem, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Divider } from '@mui/material';
+import { Box, Button, Typography, TextField, MenuItem, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Divider, Grid, useMediaQuery, useTheme } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import SearchIcon from '@mui/icons-material/Search';
 import InboxIcon from '@mui/icons-material/Inbox';
@@ -21,6 +21,8 @@ const InterviewSchedule = () => {
   const [open, setOpen] = useState(false);
   const [newEvent, setNewEvent] = useState({ title: '', start: '', end: '' });
   const [activeButton, setActiveButton] = useState(null);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -55,41 +57,43 @@ const InterviewSchedule = () => {
           <IconButton><PowerSettingsNewIcon /></IconButton>
         </Box>
       </Box>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: 'white', px: 2, mb: 2 }}>
-        <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <Button variant="text" sx={{ borderRight: '1px solid #eef2f6', borderRadius: 0, color: 'gray', ml: 2, textTransform: 'none', '&:hover': { backgroundColor: 'transparent' }, '&:focus': { backgroundColor: 'transparent' } }}>
-            Status
-            <TextField
-              select
-              size="small"
-              value={employeeFilter}
-              onChange={(e) => setEmployeeFilter(e.target.value)}
-              sx={{
-                ml: 1,
-                width: 'auto',
-                minWidth: 50,
-                '& .MuiOutlinedInput-root': {
-                  border: 'none',
-                  '& fieldset': {
+      <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, justifyContent: 'space-between', alignItems: 'center', backgroundColor: 'white', px: 2, mb: 2 }}>
+        <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, alignItems: 'center', width: '100%' }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1, width: '100%' }}>
+            <Button variant="text" sx={{ borderRight: { sm: '1px solid #eef2f6' }, borderRadius: 0, color: 'gray', ml: { sm: 2 }, textTransform: 'none', '&:hover': { backgroundColor: 'transparent' }, '&:focus': { backgroundColor: 'transparent' }, width: { xs: '100%', sm: 'auto' }, justifyContent: { xs: 'flex-start', sm: 'center' } }}>
+              Status
+              <TextField
+                select
+                size="small"
+                value={employeeFilter}
+                onChange={(e) => setEmployeeFilter(e.target.value)}
+                sx={{
+                  ml: 1,
+                  width: { xs: '100%', sm: 'auto' },
+                  minWidth: { sm: 50 },
+                  '& .MuiOutlinedInput-root': {
                     border: 'none',
+                    '& fieldset': {
+                      border: 'none',
+                    },
                   },
-                },
-              }}
-            >
-              <MenuItem value="All" fontWeight="bold" sx={{ textTransform: 'none' }}>Hide Finished</MenuItem>
-            </TextField>
-          </Button>
-          
-          <Box sx={{ display: 'flex', alignItems: 'center', pr:4, borderRight: 1, borderRightColor:'#eef2f6' }}>
+                }}
+              >
+                <MenuItem value="All" fontWeight="bold" sx={{ textTransform: 'none' }}>Hide Finished</MenuItem>
+              </TextField>
+            </Button>
+          </Box>
+          <Box sx={{ display: 'flex', alignItems: 'center', width: '100%', mt: { xs: 2, sm: 0 }, pr: { sm: 4 }, borderRight: { sm: 1 }, borderRightColor: '#eef2f6' }}>
             <IconButton sx={{
               backgroundColor: '#f3f4f8',
               border: 'solid 1px',
               borderColor: '#c4c4c4',
               borderRadius: 0,
               p: 1,
-              height: '40px',  
+              height: '40px',
               width: '45px',
-              ml: '30px'
+              ml: { sm: '30px' },
+              mr: { xs: 1, sm: 0 }
             }}>
               <SearchIcon />
             </IconButton>
@@ -98,8 +102,9 @@ const InterviewSchedule = () => {
               size="large"
               placeholder="Start typing to search"
               sx={{
+                width: '100%',
                 '& .MuiOutlinedInput-root': {
-                  height: '40px', 
+                  height: '40px',
                   borderTopLeftRadius: 0,
                   borderBottomLeftRadius: 0,
                   borderLeft: 'none'
@@ -109,12 +114,12 @@ const InterviewSchedule = () => {
           </Box>
         </Box>
       </Box>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2, mx: 4 }}>
-        <Button variant="contained" sx={{ backgroundColor: '#ff9000', color: 'white', textTransform: 'none', mr: 2 }} onClick={handleClickOpen}>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2, mx: 4, flexDirection: { xs: 'column', sm: 'row' } }}>
+        <Button variant="contained" sx={{ backgroundColor: '#ff9000', color: 'white', textTransform: 'none', mb: { xs: 2, sm: 0 }, mr: { sm: 2 } }} onClick={handleClickOpen}>
           <AddIcon sx={{ mr: 1 }} />
           Add Interview Schedule
         </Button>
-        <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+        <Box sx={{ display: 'flex', justifyContent: { xs: 'center', sm: 'flex-end' }, alignItems: 'center', width: { xs: '100%', sm: 'auto' } }}>
           <Button
             variant="contained"
             onClick={() => handleButtonClick('menu')}
@@ -124,11 +129,13 @@ const InterviewSchedule = () => {
               borderColor: 'black',
               border: 1,
               textTransform: 'none',
-              borderTopRightRadius: 0,
-              borderBottomRightRadius: 0,
+              borderTopRightRadius: activeButton === 'menu' ? '4px' : 0,
+              borderBottomRightRadius: activeButton === 'menu' ? '4px' : 0,
+              borderRadius: activeButton === 'menu' ? '4px' : 0,
               '&:hover': {
                 backgroundColor: activeButton === 'menu' ? 'black' : '#f0f0f0',
               },
+              mr: 1
             }}
           >
             <MenuIcon />
@@ -142,8 +149,9 @@ const InterviewSchedule = () => {
               borderColor: 'black',
               border: 1,
               textTransform: 'none',
-              borderTopLeftRadius: 0,
-              borderBottomLeftRadius: 0,
+              borderTopLeftRadius: activeButton === 'calendar' ? '4px' : 0,
+              borderBottomLeftRadius: activeButton === 'calendar' ? '4px' : 0,
+              borderRadius: activeButton === 'calendar' ? '4px' : 0,
               '&:hover': {
                 backgroundColor: activeButton === 'calendar' ? 'black' : '#f0f0f0',
               },
@@ -153,22 +161,26 @@ const InterviewSchedule = () => {
           </Button>
         </Box>
       </Box>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', ml: 4, mr: 4 }}>
-        <Box sx={{ backgroundColor: 'white', height: 640, p: 2, width: '65%' }}>
-          <Calendar
-            localizer={localizer}
-            events={events}
-            startAccessor="start"
-            endAccessor="end"
-            style={{ height: '100%' }}
-          />
-        </Box>
-        <Box sx={{ backgroundColor: 'white', width: '35%', ml: 2 }}>
-          <Typography variant="h6" sx={{ textTransform: 'none', fontWeight: 'bold', borderBottom: '1px solid #eef2f6', mt: 1, pb: 1, pl: 2 }}>Interview Schedule</Typography>
-          <Typography variant="body1" sx={{ textTransform: 'none', color: 'gray', mt: 1, pl: 2 }}>No upcoming interview.</Typography>
-          <Divider sx={{ my: 2 }} />
-        </Box>
-      </Box>
+      <Grid container spacing={2} sx={{ ml: 4, mr: 4 }}>
+        <Grid item xs={12} md={8}>
+          <Box sx={{ backgroundColor: 'white', height: { xs: 400, md: 640 }, p: 2 }}>
+            <Calendar
+              localizer={localizer}
+              events={events}
+              startAccessor="start"
+              endAccessor="end"
+              style={{ height: '100%' }}
+            />
+          </Box>
+        </Grid>
+        <Grid item xs={12} md={4}>
+          <Box sx={{ backgroundColor: 'white', p: 2 }}>
+            <Typography variant="h6" sx={{ textTransform: 'none', fontWeight: 'bold', borderBottom: '1px solid #eef2f6', mt: 1, pb: 1, pl: 2 }}>Interview Schedule</Typography>
+            <Typography variant="body1" sx={{ textTransform: 'none', color: 'gray', mt: 1, pl: 2 }}>No upcoming interview.</Typography>
+            <Divider sx={{ my: 2 }} />
+          </Box>
+        </Grid>
+      </Grid>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle sx={{ textTransform: 'none' }}>Add New Event</DialogTitle>
         <DialogContent>

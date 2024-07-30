@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Box, List, ListItem, ListItemText, useMediaQuery, IconButton, Drawer, ThemeProvider, createTheme } from '@mui/material';
 import { Link } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
+import logoDesktop from '../assets/logoDesktop.png'; 
+import logoMobile from '../assets/logoMobile.png';  
 
 const NavBar = () => {
   const theme = createTheme();
@@ -19,13 +21,16 @@ const NavBar = () => {
     <Box
       sx={{
         width: 250,
-        backgroundColor: '#172029',
+        backgroundColor: '#415b75',
         height: '100%',
       }}
       role="presentation"
       onClick={toggleDrawer(false)}
       onKeyDown={toggleDrawer(false)}
     >
+      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', p: 2 }}>
+        <img src={logoMobile} alt="Logo" style={{ width: '100px' }} />
+      </Box>
       <List>
         <ListItem button component={Link} to="/login">
           <ListItemText primary="Login" sx={{ color: 'white' }} />
@@ -83,12 +88,15 @@ const NavBar = () => {
             position: 'fixed',
             top: 0,
             left: 0,
-            backgroundColor: '#172029',
+            backgroundColor: '#415b75',
             display: 'flex',
             flexDirection: 'column',
             padding: 2,
           }}
         >
+          <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', p: 2 }}>
+            <img src={logoDesktop} alt="Logo" style={{ width: '150px' }} />
+          </Box>
           <List sx={{ flexGrow: 1 }}>
             <ListItem button component={Link} to="/login">
               <ListItemText primary="Login" sx={{ color: 'white' }} />
@@ -115,8 +123,8 @@ const NavBar = () => {
               <ListItemText primary="Offer Letter" sx={{ color: 'white' }} />
             </ListItem>
             <ListItem button component={Link} to="/interview-schedule">
-          <ListItemText primary="Interview Schedule" sx={{ color: 'white' }} />
-        </ListItem>
+              <ListItemText primary="Interview Schedule" sx={{ color: 'white' }} />
+            </ListItem>
           </List>
         </Box>
       )}
